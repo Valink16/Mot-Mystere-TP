@@ -19,7 +19,7 @@ int main() {
 	//Mélange des lettres du mot
 	string motMelange(mot);
 	for (int i(0); i < mot.size(); i++) 
-		swapChars(motMelange, rand() % mot.size, rand() % mot.size();
+		swapChars(motMelange, rand() % mot.size, rand() % mot.size());
 
 	while (!win) {
 		//Demander de deviner le mot mystère tant qu'on l'a pas trouvé
