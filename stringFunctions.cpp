@@ -1,4 +1,4 @@
-﻿#include <ctype.h>
+﻿
 #include <iostream>
 #include <string>
 

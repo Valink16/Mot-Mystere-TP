@@ -5,20 +5,38 @@
 #include <cstdlib>
 #include "stringFunctions.h"
 #include "loadWord.h"
-//A
+
 using namespace std;
 int main() {
 	bool win; //Utilisée pour déterminer si on a gagné | Pour déterminer si on continue de jouer
 	int tries;
-	string mot, input; //Mot mystère | Utilisée pour stocker la saisie de l'utilisateur
+	string mot, input, playerMode; //Mot mystère | Utilisée pour stocker la saisie de l'utilisateur
+	vector<string> words; //Contiendra les mots si le joueur joue seul
 	srand(time(0)); //Initialisation de la génération de nombre aléatoires
 
+	if (askClosed("(S)ingle player or (M)ultiplayer ?", "Entrez S ou M", "S", "M")) //Utilisation un peu alternatif de la fonction
+		playerMode = "SP";
+	else
+		playerMode = "MP";
+
+	if (playerMode == "SP") {//Chargement du fichier
+		cout << "Chargement des mots..." << endl;
+		loadWords("dico.txt", words);
+	}
+
 	do {
-		//Définition du mot à deviner
 		win = false;
 		tries = 5;
-		cout << "Entrez le mot a deviner : ";
-		cin >> mot;
+
+		//Définition du mot à deviner
+		if (playerMode == "MP") {
+			cout << "Entrez le mot a deviner : ";
+			cin >> mot;
+		}
+		else {
+			mot = getWord(words);
+		}
+
 		upperString(mot); //On met en majuscules pour mieux le comparer avec d'autres strings
 
 		//Mélange des lettres du mot
